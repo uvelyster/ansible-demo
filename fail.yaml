@@ -1,0 +1,12 @@
+# fail.yaml
+- hosts: seoul
+  tasks:
+    - name: Run group creation script
+      shell: /usr/bin/create_group.sh
+      register: result
+      ignore_errors: yes
+
+    - name: Report script failure
+      fail:
+        msg: "non-zero return code"
+      when: result.rc == 127

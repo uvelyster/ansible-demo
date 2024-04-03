@@ -1,0 +1,7 @@
+---
+- hosts: seoul
+  tasks:
+  - name: Show various Ansible facts
+    debug:
+      msg: >
+        The seoul of package is {{ package }}

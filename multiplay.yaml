@@ -1,0 +1,37 @@
+---
+- name: Enable web services
+  hosts: seoul 
+  become: yes
+  tasks: 
+    - name: httpd and firewalld installed
+      yum: 
+        name: 
+          - httpd
+          - firewalld
+        state: latest
+    - name: html page is installed
+      copy:
+        content: "Welcome to web server"
+        dest: /var/www/html/index.html
+    - name: firewalld enable and running
+      service:
+        name: firewalld
+        enabled: true
+        state: started
+ 
+- name: Allow Firewall rule for webserver and start webserver
+  hosts: seoul
+  become: true
+  tasks: 
+    - name: firewalld rule
+      firewalld:
+        service: http
+        permanent: true
+        state: enabled
+        immediate: yes
+    - name: httpd start
+      service:
+        name: httpd
+        enabled: true
+        state: started 
+

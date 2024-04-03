@@ -1,0 +1,11 @@
+# failed_when.yaml
+- hosts: seoul
+  tasks:
+    - name: Check if a file exists in temp and fail task if it does
+      command: ls /tmp/this_should_not_be_here
+      register: result
+      ignore_errors: yes
+    - name: debugging previous task
+      debug:
+        var: result
+      failed_when: result.rc == 2

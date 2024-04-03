@@ -1,0 +1,11 @@
+# loop.yaml
+---
+- hosts: all
+  tasks:
+    - name: Postfix and Dovecot are running
+      yum:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - postfix
+        - dovecot

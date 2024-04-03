@@ -1,0 +1,17 @@
+- hosts: seoul
+  force_handlers: yes
+  tasks:
+    - name: a task to notify handler
+      command: /bin/true
+      notify: restart mariadb
+
+    - name: a failed task if the package doesn't exist
+      yum:
+        name: httpdpkg
+        state: latest
+
+  handlers:
+    - name: restart mariadb
+      service:
+        name: mariadb
+        state: restarted

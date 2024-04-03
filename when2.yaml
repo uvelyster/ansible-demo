@@ -1,0 +1,12 @@
+
+# when2.yaml
+---
+- name: Test Variable is Defined Demo
+  hosts: all
+  vars:
+    my_service: httpd
+  tasks:
+    - name: "{{ my_service }} package is installed"
+      yum:
+        name: "{{ my_service }}"
+      when: my_service is not defined

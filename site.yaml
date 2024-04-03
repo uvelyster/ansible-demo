@@ -1,0 +1,7 @@
+- hosts: servera.example.com
+  tasks:
+  - command: swapoff -a
+    register: result
+  - name: debugging
+    debug: 
+      var: result

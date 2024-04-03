@@ -1,0 +1,12 @@
+# changed_when.yaml
+- name: Changed_when Failure Task
+  hosts: seoul
+  tasks:
+    - name: Check date and time
+      command: date
+      register: result
+      changed_when: false 
+
+    - name: Show local date and time
+      debug:
+        var: result.stdout

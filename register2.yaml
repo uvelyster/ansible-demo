@@ -1,0 +1,17 @@
+# new-register.yaml
+---
+- name: Loop Register Test
+  gather_facts: no
+  hosts: seoul
+  tasks:
+    - name: Looping Echo Task
+      ansible.builtin.shell: "echo This is my item: {{ item }}"
+      loop:
+        - one
+        - two
+      register: echo_results
+
+    - name: Show stdout from the previous task.
+      ansible.builtin.debug:
+        msg: "STDOUT from previous task: {{ item['stdout'] }}"
+      loop: "{{ echo_results['results'] }}"

@@ -1,0 +1,8 @@
+---
+- name: Delete Apache webserver
+  hosts: webservers
+  tasks:
+    - name: HTTPD is deleted.
+      yum:
+        name: httpd
+        state: absent

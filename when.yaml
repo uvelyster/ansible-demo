@@ -1,0 +1,12 @@
+
+# when.yaml
+---
+- name: Simple Boolean Task Demo
+  hosts: all
+  vars:
+    run_my_task: 0
+  tasks:
+    - name: httpd package is installed
+      yum:
+        name: httpd
+      when: run_my_task
