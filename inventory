@@ -1,3 +1,11 @@
+[controlplanes]
+servera.example.com
+
+[worker_nodes]
+serverb.example.com
+serverc.example.com
+
+
 [webservers]
 server[a:c].example.com
 
@@ -18,3 +26,7 @@ serverb.example.com
 [korea:children]
 seoul
 busan
+
+[cluster:children]
+controlplanes
+worker_nodes
