@@ -84,12 +84,20 @@
     src: /etc/hosts
     dest: /etc/hosts
 
+- name: Check if kubelet.conf exists
+  stat:
+    path: "{{ kube_config_dir }}/kubelet.conf"
+    get_attributes: no
+    get_checksum: no
+    get_mime: no
+  register: kubelet_conf
+
 - name: init cluster
   shell: |
     kubeadm init --apiserver-advertise-address={{ controlplane_IP }} \
                   --pod-network-cidr=192.168.0.0/16 \
                   --token={{ TOKEN }}
-  when: inventory_hostname in groups['controlplanes']
+  when: inventory_hostname in groups['controlplanes'] and (not kubelet_conf.stat.exists)
   ignore_errors: yes
 
 - name: join cluster
@@ -97,5 +105,14 @@
     kubeadm join --token={{ TOKEN }} \
                  --discovery-token-unsafe-skip-ca-verification \
                  {{ controlplane_IP}}:6443
-  when: inventory_hostname in groups['worker_nodes']
+  when: inventory_hostname in groups['worker_nodes'] and (not kubelet_conf.stat.exists)
+
+
+- name: Copy admin config file from master
+  become: true
+  fetch:
+    src: /etc/kubernetes/admin.conf
+    dest: "{{ REMOTE_USER }}/.kube/config"
+    flat: yes
+  when: inventory_hostname in ['controlplane']
 

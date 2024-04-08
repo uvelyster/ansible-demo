@@ -1,5 +1,11 @@
 ---
+- name: Install client
+  hosts: localhost
+  roles:
+    - client
+
 - name: Install Kubernetes Cluster
   hosts: cluster
+  become: true
   roles:
     - k8s

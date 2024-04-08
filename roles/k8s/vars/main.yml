@@ -1,3 +1,4 @@
 ---
 # vars file for k8s
-TOKEN=kdigit.123456789hellow
+TOKEN: kdigit.1234567890hellow
+REMOTE_USER: /home/ansible-user

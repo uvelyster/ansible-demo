@@ -1,0 +1,12 @@
+---
+# tasks file for client
+- name: Configure kubectl
+  get_url:
+    url: https://dl.k8s.io/release/{{ KUBE_VERSION }}/bin/linux/amd64/kubectl
+    dest: /usr/local/bin/kubectl
+    mode: +x
+
+- name: Creates directory
+  file:
+    path: '{{ REMOTE_USER }}/.kube'
+    state: directory
