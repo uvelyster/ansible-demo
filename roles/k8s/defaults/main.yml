@@ -1,0 +1,4 @@
+---
+# defaults file for k8s
+controlplane_IP: 172.16.0.100
+TOKEN: kdigit.123456789hellow
