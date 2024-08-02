@@ -10,3 +10,5 @@
   file:
     path: '{{ REMOTE_USER }}/.kube'
     state: directory
+    user: ansible-user
+    group: ansible-user
