@@ -10,3 +10,5 @@
   file:
     path: /root/.kube'
     state: directory
+    user: ansible-user
+    group: ansible-user

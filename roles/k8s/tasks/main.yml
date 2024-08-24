@@ -65,6 +65,7 @@
   loop:
     - containerd
     - kubeadm
+    - kubelet
 
 - name: copy container config file
   copy:
