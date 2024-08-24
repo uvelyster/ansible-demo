@@ -8,5 +8,5 @@
 
 - name: Creates directory
   file:
-    path: '{{ REMOTE_USER }}/.kube'
+    path: /root/.kube'
     state: directory

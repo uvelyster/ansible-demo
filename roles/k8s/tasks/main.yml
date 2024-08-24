@@ -51,12 +51,12 @@
   yum_repository:
     name: kubernetes
     description: kubernetes repo
-    baseurl: https://pkgs.k8s.io/core:/stable:/v1.29/rpm/
+    baseurl: https://pkgs.k8s.io/core:/stable:/v1.31/rpm/
     enabled: yes
     gpgcheck: yes
     repo_gpgcheck: yes
     gpgkey:
-      - https://pkgs.k8s.io/core:/stable:/v1.29/rpm/repodata/repomd.xml.key
+      - https://pkgs.k8s.io/core:/stable:/v1.31/rpm/repodata/repomd.xml.key
 
 - name: Install containerd and kubeadm
   yum:
@@ -112,7 +112,7 @@
   become: true
   fetch:
     src: /etc/kubernetes/admin.conf
-    dest: "{{ REMOTE_USER }}/.kube/config"
+    dest: /root/.kube/config
     flat: yes
   when: inventory_hostname in ['controlplane']
 
