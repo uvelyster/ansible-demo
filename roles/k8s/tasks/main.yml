@@ -95,7 +95,7 @@
 
 - name: init cluster
   shell: |
-    kubeadm init --apiserver-advertise-address={{ controlplane_IP }} \
+    kubeadm init --apiserver-advertise-address={{  hostvars[inventory_hostname]['ansible_' + mgmt_nic]['ipv4']['address'] }} \
                   --pod-network-cidr=192.168.0.0/16 \
                   --token={{ TOKEN }}
   when: inventory_hostname in groups['controlplanes'] and (not kubelet_conf.stat.exists)
