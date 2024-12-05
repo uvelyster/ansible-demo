@@ -1,5 +1,5 @@
 [controlplanes]
-controlplane  controlplane_IP=172.16.0.200
+controlplane  mgmt_nic=enp0s8
 
 [worker_nodes]
 node01
