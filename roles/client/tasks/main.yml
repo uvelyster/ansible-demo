@@ -8,7 +8,5 @@
 
 - name: Creates directory
   file:
-    path: /home/ansible-user/.kube
+    path: /root/.kube
     state: directory
-    owner: ansible-user
-    group: ansible-user

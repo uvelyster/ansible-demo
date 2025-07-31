@@ -108,12 +108,11 @@
                  {{ controlplane_IP}}:6443
   when: inventory_hostname in groups['worker_nodes'] and (not kubelet_conf.stat.exists)
 
-
 - name: Copy admin config file from master
   become: true
   fetch:
     src: /etc/kubernetes/admin.conf
     dest: /root/.kube/config
     flat: yes
-  when: inventory_hostname in ['controlplane']
+  when: inventory_hostname in groups['controlplanes']
 
