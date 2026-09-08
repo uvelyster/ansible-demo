@@ -21,6 +21,10 @@ roles/client/vars/main.yml
 KUBE_VERSION: 'v1.36.0'
 ```
 
+3. selinux pkg
+```
+dnf install -y libselinux-python3
+```
 ### Calico Install 
 ```
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.32.1/manifests/v1_crd_projectcalico_org.yaml
