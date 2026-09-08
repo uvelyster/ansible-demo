@@ -21,6 +21,11 @@
     - net.bridge.bridge-nf-call-iptables
     - net.ipv4.ip_forward
 
+- name: install python3 selinux pkg
+  dnf:
+    name: libselinux-python3
+    state: present
+
 - name: selinux config
   selinux:
     policy: targeted
